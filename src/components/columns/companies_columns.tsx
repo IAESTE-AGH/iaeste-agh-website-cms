@@ -5,7 +5,9 @@ import { Company } from "@/types/companies";
 import { Pencil, Trash2, Eye } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
-export const companiesColumns: ColumnDef<Company>[] = [
+export const companiesColumns = (
+  onView: (company: Company) => void
+): ColumnDef<Company>[] => [
   {
     accessorKey: "status",
     header: "Status",
@@ -74,7 +76,7 @@ export const companiesColumns: ColumnDef<Company>[] = [
         <div className="flex gap-2 justify-center">
           <Eye
             className="h-4 w-4 cursor-pointer text-black-500"
-            onClick={() => console.log(`View ${row.id}`)}
+            onClick={() => onView(row.original)}
           />
           <Pencil
             className="h-4 w-4 cursor-pointer text-black-500"

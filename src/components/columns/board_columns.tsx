@@ -4,7 +4,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { BoardMember } from "@/types/board";
 import { Pencil, Trash2, Eye } from "lucide-react";
 
-export const boardColumns: ColumnDef<BoardMember>[] = [
+export const boardColumns = (onView: (member: BoardMember) => void): ColumnDef<BoardMember>[] => [
   {
     accessorKey: "fullname",
     header: "Imię i Nazwisko",
@@ -42,7 +42,7 @@ export const boardColumns: ColumnDef<BoardMember>[] = [
         <div className="flex gap-2 justify-center">
           <Eye
             className="h-4 w-4 cursor-pointer text-black-500"
-            onClick={() => console.log(`View ${row.id}`)}
+            onClick={() => onView(row.original)}
           />
           <Pencil
             className="h-4 w-4 cursor-pointer text-black-500"

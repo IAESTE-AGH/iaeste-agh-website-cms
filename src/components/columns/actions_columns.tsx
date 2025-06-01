@@ -5,7 +5,7 @@ import { Action } from "@/types/actions";
 import {Pencil, Trash2, Eye} from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
 
-export const actionsColumns: ColumnDef<Action>[] = [
+export const actionsColumns = (onView: (action: Action) => void): ColumnDef<Action>[] => [
   {
     accessorKey: "status",
     header: "Status",
@@ -96,7 +96,7 @@ export const actionsColumns: ColumnDef<Action>[] = [
         <div className="flex gap-2 justify-center">
           <Eye
             className="h-4 w-4 cursor-pointer text-black-500"
-            onClick={() => console.log(`View ${row.id}`)}
+            onClick={() => onView(row.original)}
           />
           <Pencil
             className="h-4 w-4 cursor-pointer text-black-500"
